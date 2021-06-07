@@ -6,4 +6,5 @@ Quasar App Calculator is a device that performs arithmetic operations on numbers
 + Quasar Framework
 + Vue 3
 + API component
++ Math.js
 

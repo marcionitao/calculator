@@ -1,17 +1,60 @@
 <template>
-  <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    >
+  <q-page padding>
+    <div class="row justify-center">
+      <div class="col-12 col-md-8">
+        <q-card>
+
+          <q-card-section class="bg-primary text-white">
+            <div class="text-h6">Calculator</div>
+          </q-card-section>
+
+          <q-card-section>
+            <div class="text-h5 text-grey-5 text-right">
+              This is a Result
+            </div>
+            <div class="text-h3 text-right">
+              Total
+            </div>
+          </q-card-section>
+          <!--Buttons-->
+          <q-card-section class="bg-grey-4">
+            <div class="row q-col-gutter-sm">
+              <!--Nas we don't have any index-->
+              <div class="col-3" v-for="(btn, index) in buttons" :key="index">
+                <!--'isNaN' verify if is a String or Number-->
+                <q-btn
+                  class="full-width text-h6"
+                  :color="noNumber(btn) ? 'indigo' : 'grey-2'"
+                  :text-color="noNumber(btn) ? 'white' : 'grey-8'" >
+                  {{ btn }}
+                </q-btn>
+              </div>
+
+              <dir class="col-6">
+                 <q-btn class="full-width text-h6" color="indigo">Reset</q-btn>
+              </dir>
+              <dir class="col-6">
+                 <q-btn class="full-width text-h6" color="orange"> = </q-btn>
+              </dir>
+            </div>
+          </q-card-section>
+        </q-card>
+      </div>
+    </div>
   </q-page>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+export default {
+  setup () {
+    const buttons = [7,8,9,"%",4,5,6,"+",1,2,3,"-",".",0,"/","*"];
+    const noNumber = value => isNaN(value);
 
-export default defineComponent({
-  name: 'PageIndex'
-})
+    return { buttons, noNumber }
+  }
+}
 </script>
+
+<style lang="scss" scoped>
+
+</style>
