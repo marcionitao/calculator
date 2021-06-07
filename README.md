@@ -1,26 +1,9 @@
-# Quasar App (calculator)
+# Quasar App Calculator
 
-A Quasar Framework app
+Quasar App Calculator is a device that performs arithmetic operations on numbers. The simplest calculators can do only addition, subtraction, multiplication, and division. More sophisticated calculators can handle exponent ial operations, roots, logarithm s, trigonometric functions, and hyperbolic functions.
 
-## Install the dependencies
-```bash
-npm install
-```
+## Technologies
++ Quasar Framework
++ Vue 3
++ API component
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
-```
-
-### Lint the files
-```bash
-npm run lint
-```
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.conf.js](https://v2.quasar.dev/quasar-cli/quasar-conf-js).
