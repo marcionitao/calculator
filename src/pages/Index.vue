@@ -10,7 +10,7 @@
 
           <q-card-section>
             <div class="text-h5 text-grey-5 text-right">
-              This is a Result
+              {{ actual }}
             </div>
             <div class="text-h3 text-right">
               Total
@@ -21,11 +21,13 @@
             <div class="row q-col-gutter-sm">
               <!--Nas we don't have any index-->
               <div class="col-3" v-for="(btn, index) in buttons" :key="index">
-                <!--'isNaN' verify if is a String or Number-->
+
                 <q-btn
                   class="full-width text-h6"
                   :color="noNumber(btn) ? 'indigo' : 'grey-2'"
-                  :text-color="noNumber(btn) ? 'white' : 'grey-8'" >
+                  :text-color="noNumber(btn) ? 'white' : 'grey-8'"
+                  @click="btnAction(btn)"
+                  >
                   {{ btn }}
                 </q-btn>
               </div>
@@ -45,16 +47,36 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
 export default {
   setup () {
     const buttons = [7,8,9,"%",4,5,6,"+",1,2,3,"-",".",0,"/","*"];
-    const noNumber = value => isNaN(value);
+    // 'isNaN' verify if is a String
+    const noNumber = myValue => isNaN(myValue);
 
-    return { buttons, noNumber }
+    // reative
+    const actual = ref('');
+
+    // detected Number or operator button
+    const btnAction = myValue => {
+      // if is a Number
+      if (!noNumber(myValue)) {
+        // concatenating values
+        actual.value = `${actual.value}${myValue}`
+      }
+    }
+
+    return { buttons, noNumber, btnAction, actual}
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+  .text-h5 {
+    height: 23px;
+  }
+  .text-h5 {
+    height: 50px;
+  }
 </style>
