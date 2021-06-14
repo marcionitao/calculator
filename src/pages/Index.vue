@@ -64,10 +64,34 @@ export default {
       if (!noNumber(myValue)) {
         // concatenating values
         actual.value = `${actual.value}${myValue}`
+      } else {
+        runOperation(myValue)
       }
     }
 
-    return { buttons, noNumber, btnAction, actual}
+    const runOperation = myValue => {
+      // if is a Punt
+      if (myValue === '.') {
+        // checks the array of typed characters if there is NOT '.'
+        if (actual.value.indexOf('.') === -1){
+          // if not exist a '.', concatenating values
+          actual.value = `${actual.value}${myValue}`
+        }
+
+        return
+      }
+      // if is a percentage %
+       if (myValue === '%') {
+         // checks the array of typed characters if there is NOT 'empty ''
+         if (actual.value !== '') {
+           // concatenating values and changed to % value
+           actual.value = `${parseFloat(actual.value) / 100}`
+         }
+         return
+       }
+    }
+
+    return { buttons, noNumber, btnAction, actual }
   }
 }
 </script>
