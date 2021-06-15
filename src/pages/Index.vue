@@ -10,10 +10,10 @@
 
           <q-card-section>
             <div class="text-h5 text-grey-5 text-right">
-              {{ actual }}
+              {{ accumulator + actual }}
             </div>
             <div class="text-h3 text-right">
-              Total
+              {{ result }}
             </div>
           </q-card-section>
           <!--Buttons-->
@@ -33,10 +33,10 @@
               </div>
 
               <dir class="col-6">
-                 <q-btn class="full-width text-h6" color="indigo">Reset</q-btn>
+                 <q-btn class="full-width text-h6" color="indigo" @click="btnReset()">Reset</q-btn>
               </dir>
               <dir class="col-6">
-                 <q-btn class="full-width text-h6" color="orange"> = </q-btn>
+                 <q-btn class="full-width text-h6" color="orange" @click="btnResult()"> = </q-btn>
               </dir>
             </div>
           </q-card-section>
@@ -46,55 +46,7 @@
   </q-page>
 </template>
 
-<script>
-import { ref } from 'vue';
-
-export default {
-  setup () {
-    const buttons = [7,8,9,"%",4,5,6,"+",1,2,3,"-",".",0,"/","*"];
-    // 'isNaN' verify if is a String
-    const noNumber = myValue => isNaN(myValue);
-
-    // reative
-    const actual = ref('');
-
-    // detected Number or operator button
-    const btnAction = myValue => {
-      // if is a Number
-      if (!noNumber(myValue)) {
-        // concatenating values
-        actual.value = `${actual.value}${myValue}`
-      } else {
-        runOperation(myValue)
-      }
-    }
-
-    const runOperation = myValue => {
-      // if is a Punt
-      if (myValue === '.') {
-        // checks the array of typed characters if there is NOT '.'
-        if (actual.value.indexOf('.') === -1){
-          // if not exist a '.', concatenating values
-          actual.value = `${actual.value}${myValue}`
-        }
-
-        return
-      }
-      // if is a percentage %
-       if (myValue === '%') {
-         // checks the array of typed characters if there is NOT 'empty ''
-         if (actual.value !== '') {
-           // concatenating values and changed to % value
-           actual.value = `${parseFloat(actual.value) / 100}`
-         }
-         return
-       }
-    }
-
-    return { buttons, noNumber, btnAction, actual }
-  }
-}
-</script>
+<script src="./index.js"></script>
 
 <style lang="scss" scoped>
   .text-h5 {
