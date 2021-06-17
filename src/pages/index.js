@@ -11,12 +11,17 @@ export default {
     const actual = ref('');
     const accumulator = ref('');
     const result = ref('');
+    // option to control the usage and visualization of operators
     const operatorClick = ref(true);
 
     // detected Number or operator button
     const btnAction = myValue => {
       // if is a Number
       if (!noNumber(myValue)) {
+        if (operatorClick.value) {
+          actual.value = '';
+          operatorClick.value = false;
+        }
         // concatenating values
         actual.value = `${actual.value}${myValue}`
       } else {
@@ -51,9 +56,13 @@ export default {
 
     // if is NOT percentage % or a Punt is(+, -, *, /)
     const addOperator = myValue => {
-      // concatenating values and add new value
-      accumulator.value += `${actual.value} ${myValue} `;
-      actual.value = '';
+      if (!operatorClick.value) {
+        // concatenating values and add new value
+        accumulator.value += `${actual.value} ${myValue} `;
+        actual.value = '';
+        operatorClick.value = true;
+
+      }
     }
 
     // reset and clear values
@@ -61,12 +70,18 @@ export default {
       actual.value = '';
       accumulator.value = '';
       result.value = '';
+      operatorClick.value = true;
     }
 
+    // show result total with use of 'evaluate' from msth.js
     const btnResult = () => {
-      result.value = evaluate(accumulator.value + actual.value)
+      if (!operatorClick.value) {
+        result.value = evaluate(accumulator.value + actual.value)
+      } else {
+        result.value = 'Error!'
+      }
     }
 
-    return { buttons, noNumber, btnAction, actual, accumulator, btnReset, btnResult, result }
+    return { buttons, noNumber, btnAction, actual, accumulator, btnReset, btnResult, result, operatorClick }
   }
 }
