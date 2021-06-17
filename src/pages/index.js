@@ -13,6 +13,8 @@ export default {
     const result = ref('');
     // option to control the usage and visualization of operators
     const operatorClick = ref(true);
+    // Array to show all operations
+    const arrayResult = ref([])
 
     // detected Number or operator button
     const btnAction = myValue => {
@@ -76,12 +78,14 @@ export default {
     // show result total with use of 'evaluate' from msth.js
     const btnResult = () => {
       if (!operatorClick.value) {
-        result.value = evaluate(accumulator.value + actual.value)
+        result.value = evaluate(accumulator.value + actual.value);
+        // add content to Array
+        arrayResult.value.push(`${accumulator.value} ${actual.value} = ${result.value}`)
       } else {
         result.value = 'Error!'
       }
     }
 
-    return { buttons, noNumber, btnAction, actual, accumulator, btnReset, btnResult, result, operatorClick }
+    return { buttons, noNumber, btnAction, actual, accumulator, btnReset, btnResult, result, arrayResult }
   }
 }

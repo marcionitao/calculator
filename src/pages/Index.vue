@@ -41,6 +41,7 @@
             </div>
           </q-card-section>
         </q-card>
+        <pre>{{ arrayResult }}</pre>
       </div>
     </div>
   </q-page>
