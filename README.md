@@ -9,6 +9,6 @@ Quasar App Calculator is a device that performs arithmetic operations on numbers
 + API component
 + Math.js
 
-## ScreemShot
+## ScreenShot
 
 ![Screenshot_1](https://user-images.githubusercontent.com/3647246/122734670-94420900-d27e-11eb-8d17-272c743d6ee4.png)
